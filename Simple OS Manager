@@ -1,0 +1,76 @@
+import os
+from colorama import Fore, Style
+
+print(os.name)
+nw = os.getcwd()
+print(nw)
+
+while True:
+    print(f"\n{Fore.BLUE} Project By Joseee Siagian {Style.RESET_ALL}")
+    print("\n=====PROJECT OS Manager=====\n")
+    print("1.Tampilkan isi File directory")
+    print("2.Buat directory baru")
+    print("3.Ganti nama directory")
+    print("4.Baca isi File")
+    print("5.Hapus File")
+    print("6.Hapus Folder")
+    print("7.Keluar")
+
+    choice = int(input("Masukkan Opsi Brooo/Siss : "))
+    if choice == 1:
+        print("\nIsi Directory saat ini :\n")
+        for item in os.listdir():
+            print("-",item)
+
+    elif choice == 2:
+        File_Name =input("Masukkan nama folder yang ingin dibuat : ")
+        if not os.path.exists(File_Name):
+            print("File Anda sudah berhasil dibuat")
+            os.mkdir(File_Name)
+        else:
+            print("Nama Folder Sudah Ada")
+    
+    elif choice == 3:
+        input1 = input(f"Masukkan Nama File Lama : ")
+        input2 = input(f"Masukkan Nama File Baru : ")
+        if os.path.exists(input1) == True :
+            os.rename(input1,input2)
+        else:
+            print("Nama File Lama Anda Tidak Terdeteksi")
+
+    elif choice == 4:
+        inputfile = input("Nama file yang ingin dibaca : ")
+        if os.path.exists(inputfile):
+            with open(inputfile, "r") as file:
+                content = file.read()
+                print("\nISI File")
+                print(content)
+        else:
+            print("File Tidak Ada")
+
+    elif choice == 5 :
+        inputfile = input("Masukkan File Yang ingin Dihapus : ")
+        if os.path.exists(inputfile):
+            os.remove(inputfile)
+            print(f"{inputfile} berhasil dihapus")
+        else :
+            print(f"{inputfile} Tidak ditemukan")
+    
+    elif choice == 6:
+        folder = input("Masukkan Nama folder : ")
+        if os.path.exists(folder) and os.path.isdir(folder):
+            try:
+                os.rmdir(folder)
+                print(f"{folder} Berhasil dihapus")
+            except:
+                print(f"Folder Tidak Kosong,Harap Kosongkan Dulu")
+        else :
+            print("File tidak ditemukan")
+    
+    elif choice == 7:
+        print("Selamat Tinggal")
+        break
+
+    else:
+        print("Inputan tidak Valid")
+
